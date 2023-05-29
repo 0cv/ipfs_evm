@@ -20,4 +20,4 @@ tests:
 	cargo test
 
 docs:
-	cargo doc --no-deps
+	cargo doc --open

@@ -11,14 +11,19 @@ use web3::{
     Web3,
 };
 
+/// This struct represents a file uploaded to IPFS.
 #[derive(Deserialize)]
 #[serde(rename_all = "PascalCase")]
 struct Ipfs {
+    /// The name of the file.
     name: String,
+    /// The IPFS hash of the file.
     hash: String,
+    /// The size of the file in bytes.
     size: String,
 }
 
+/// This struct represents a user's private key configuration.
 #[derive(Serialize, Deserialize)]
 struct MyConfig {
     private_key: String,
@@ -32,6 +37,8 @@ impl ::std::default::Default for MyConfig {
     }
 }
 
+/// This will upload a file to IPFS, and store the CID of the uploaded file
+/// on a smart contract in Polygon.
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     check_config()?;
@@ -49,6 +56,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
+/// Checks the user's configuration.
+///
+/// If the private key is not set, it will ask the user to input it.
 fn check_config() -> Result<()> {
     let cfg: MyConfig = confy::load("ipfs-evm", None)?;
 
@@ -61,6 +71,9 @@ fn check_config() -> Result<()> {
     Ok(())
 }
 
+/// Uploads a file to IPFS.
+///
+/// The file to be uploaded is provided as a command line argument.
 async fn upload_file(url: &str, args: Vec<String>) -> Result<Ipfs> {
     if args.len() != 2 {
         panic!("Usage: {} <file_path>", &args[0]);
@@ -100,6 +113,9 @@ async fn upload_file(url: &str, args: Vec<String>) -> Result<Ipfs> {
     }
 }
 
+/// Stores the CID of a file on a smart contract in Polygon.
+///
+/// The CID is obtained from the response of the `upload_file` function.
 async fn set_cid(response: Ipfs) -> Result<()> {
     let cid = response.hash;
 
