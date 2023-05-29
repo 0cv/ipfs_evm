@@ -1,0 +1,1 @@
+[{"inputs":[{"internalType":"address","name":"userAddress","type":"address"}],"name":"retrieve","outputs":[{"internalType":"string[]","name":"","type":"string[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"cid","type":"string"}],"name":"store","outputs":[],"stateMutability":"nonpayable","type":"function"}]

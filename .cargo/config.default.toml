@@ -1,0 +1,4 @@
+[env]
+INFURA_IPFS_PROJECT_ID = "xxx"
+INFURA_IPFS_PROJECT_SECRET = "xxxx"
+INFURA_WEB3_ENDPOINT = "https://polygon-mumbai.infura.io/v3/key"

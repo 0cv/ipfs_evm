@@ -1,0 +1,29 @@
+name: Rust
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  tests:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      CONFIG_TOML: ${{ secrets.CONFIG_TOML }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+          echo "$CONFIG_TOML" > .cargo/config.toml
+          cargo build --verbose
+      - name: Run tests
+        run: |
+          cargo test test_no_arguments
+          cargo test test_upload_file
