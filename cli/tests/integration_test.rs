@@ -1,9 +1,7 @@
 use anyhow::Result;
-// use load_config::{load, ConfigType, SfdcCredential, SftpCredential};
-// use rust_sync_force::response::QueryResponse;
-use assert_cmd::prelude::*; // Add methods on commands
-use predicates::prelude::*; // Used for writing assertions
-use std::process::Command; // Run programs
+use assert_cmd::prelude::*;
+use predicates::prelude::*;
+use std::process::Command;
 
 #[test]
 fn test_no_such_file() -> Result<()> {
